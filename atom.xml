@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhengnaizhong.github.io</id>
     <title>郑儿八斤</title>
-    <updated>2020-08-19T12:26:06.790Z</updated>
+    <updated>2020-08-19T14:44:20.940Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhengnaizhong.github.io"/>
     <link rel="self" href="https://zhengnaizhong.github.io/atom.xml"/>
@@ -10,6 +10,72 @@
     <logo>https://zhengnaizhong.github.io/images/avatar.png</logo>
     <icon>https://zhengnaizhong.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 郑儿八斤</rights>
+    <entry>
+        <title type="html"><![CDATA[Fabric入门（第一篇）：运行test-network]]></title>
+        <id>https://zhengnaizhong.github.io/post/fabric-ru-men-di-yi-pian-yun-xing-test-network/</id>
+        <link href="https://zhengnaizhong.github.io/post/fabric-ru-men-di-yi-pian-yun-xing-test-network/">
+        </link>
+        <updated>2020-08-19T12:34:11.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="安装虚拟机">安装虚拟机</h1>
+<pre><code>https://ubuntu.com/download/server/thank-you?version=20.04.1&amp;architecture=amd64
+</code></pre>
+<h1 id="修改软件源">修改软件源</h1>
+<pre><code>http://mirrors.aliyun.com/ubuntu/
+</code></pre>
+<h1 id="拉取fabric最新代码到本地">拉取fabric最新代码到本地</h1>
+<pre><code>git clone https://github.com/hyperledger/fabric.git
+</code></pre>
+<h1 id="安装docker">安装docker</h1>
+<pre><code>sudo apt install docker.io
+</code></pre>
+<h1 id="将当前用户加入docker用户组">将当前用户加入docker用户组</h1>
+<pre><code>sudo gpasswd -a $USER docker
+newgrp docker
+</code></pre>
+<h1 id="安装docker-compose">安装docker-compose</h1>
+<pre><code>sudo apt install docker-compose
+</code></pre>
+<h1 id="拉取samples">拉取samples</h1>
+<pre><code>git clone https://gitee.com/zhengnaizhong/fabric-samples.git
+</code></pre>
+<h1 id="下载二进制文件和配置文件目录">下载二进制文件和配置文件目录</h1>
+<pre><code>https://github.com/hyperledger/fabric/releases/download/v2.2.0/hyperledger-fabric-linux-amd64-2.2.0.tar.gz
+</code></pre>
+<h1 id="将下载文件解压">将下载文件解压</h1>
+<pre><code>tar -zxvf hyperledger-fabric-linux-amd64-2.2.0.tar.gz
+</code></pre>
+<h1 id="解压出的bin和config目录放入fabric-samples下">解压出的bin和config目录放入fabric-samples下</h1>
+<pre><code>mv bin/ fabric-samples/
+mv config/ fabric-samples/
+</code></pre>
+<h1 id="配置docker镜像库">配置docker镜像库</h1>
+<pre><code>sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+  &quot;registry-mirrors&quot;: [&quot;https://zkei4kb8.mirror.aliyuncs.com&quot;]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<h1 id="启动test-network">启动test-network</h1>
+<pre><code>cd fabric-samples/test-network/
+./network.sh up -i 2.2
+</code></pre>
+<h1 id="创建通道">创建通道</h1>
+<pre><code>./network.sh createChannel
+</code></pre>
+<h1 id="设置go国内加速">设置go国内加速</h1>
+<pre><code>go env -w GOPROXY=https://goproxy.cn,direct
+</code></pre>
+<h1 id="安装智能合约go版本有坑报错go-inconsistent-vendoring-in-chaincodeinputsrc">安装智能合约（go版本有坑，报错：go: inconsistent vendoring in /chaincode/input/src）</h1>
+<pre><code>./network.sh deployCC
+</code></pre>
+<h1 id="查询测试">查询测试</h1>
+<pre><code>略（参考官方文档）
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://zhengnaizhong.github.io/post/hello-gridea/</id>
